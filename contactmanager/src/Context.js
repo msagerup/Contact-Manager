@@ -29,14 +29,13 @@ export class Provider extends Component {
       this.setState(state => reducer(state, action));
     }
   };
-
-  componentDidMount() {
+  // Async method
+  async componentDidMount() {
     const url = 'https://jsonplaceholder.typicode.com/users';
-    axios.get(url).then(res =>
-      this.setState({
-        contacts: res.data
-      })
-    );
+    const res = await axios.get(url);
+    this.setState({
+      contacts: res.data
+    });
   }
 
   render() {
