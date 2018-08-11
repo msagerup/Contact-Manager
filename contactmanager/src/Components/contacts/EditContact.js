@@ -54,6 +54,17 @@ class EditContact extends Component {
       });
       return;
     }
+    const updContact = {
+      name,
+      email,
+      phone
+    };
+
+    const { id } = this.props.match.params;
+    const url = `https://jsonplaceholder.typicode.com/users/${id}`;
+    const res = await axios.put(url, updContact);
+
+    dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
 
     //After submit, clear state
     this.setState({
